@@ -1,6 +1,8 @@
-tablero = [[" ", " ", " "],
-           [" ", " ", " "],
-            [" ", " ", " "]]
+tablero = [
+    [" ", " ", " "],
+    [" ", " ", " "],
+    [" ", " ", " "]
+    ]
 
 def mostrar_tablero():
     print("   0   1   2")
@@ -20,36 +22,41 @@ def comprobar_ganador(jugador):
         if tablero[0][col] == tablero[1][col] == tablero[2][col] == jugador:
             return True
     #Compracion de diagonales
-    if (tablero[0][0] == tablero[1][1] == tablero[2][2]) or (tablero[0][2] == tablero[1][1]==tablero[2][0]):
+    if (tablero[0][0] == tablero[1][1] == tablero[2][2] == jugador) or (tablero[0][2] == tablero[1][1]==tablero[2][0] == jugador):
         return True
     return False
 
 jugador_actual = "X"
 turnos = 0
+contador = 0
 
-while True:
-    mostrar_tablero()
-    print(f"Turno del jugador {jugador_actual}")
-    
-    fila = int(input("Ingresa la fila (0,1,2)"))
-    col = int(input("Ingresa la columna (0,1,2)"))
-    
-    if tablero[fila][col]== " ":
-        tablero[fila][col]=jugador_actual
-    else:
-       print("La casilla está ocupada")
-       continue
-    turnos += 1
-    if not(comprobar_ganador(jugador_actual)):
+if contador <=3
+    while True:
         mostrar_tablero()
-        print(f"El jugador {jugador_actual} ha GANADO!!!!")
-        break
-    
-    if turnos == 9:
-        print("Empate")
-        break
+        print(f"Turno del jugador {jugador_actual}")
         
-    if jugador_actual == "X":
-        jugador_actual = "O"
-    else:
-        jugador_actual = "X"
+        fila = int(input("Ingresa la fila (0,1,2)"))
+        col = int(input("Ingresa la columna (0,1,2)"))
+        
+        if tablero[fila][col]== " ":
+            tablero[fila][col]=jugador_actual
+        else:
+            print("La casilla está ocupada")
+            continue
+        turnos += 1
+        if (comprobar_ganador(jugador_actual)):
+            mostrar_tablero()
+            print(f"El jugador {jugador_actual} ha GANADO!!!!")
+            contador =+ 1
+            break
+            
+        if turnos == 9:
+            print("Empate")
+            contador =+ 1
+            break
+                
+        if jugador_actual == "X":
+            jugador_actual = "O"
+        else:
+            jugador_actual = "X"
+    print(f"partida N° {marcador +1} terminada")
